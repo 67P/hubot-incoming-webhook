@@ -1,0 +1,22 @@
+{
+  "name": "hubot-incoming-webhook",
+  "version": "1.0.0",
+  "description": "Accept incoming Webhooks to write messages to a room/channel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hubot",
+    "hubot-script"
+  ],
+  "authors": [
+    "Sebastian Kippe <sebastian@kip.pe>"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/67P/hubot-incoming-webhook",
+  "engines": {
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
+  }
+}
