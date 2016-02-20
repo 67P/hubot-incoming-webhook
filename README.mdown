@@ -13,11 +13,11 @@ Add to `external_scripts.json`:
 
 ```json
 [
-  "incoming-webhook"
+  "hubot-incoming-webhook"
 ]
 ```
 
-Set the `WEBHOOK TOKEN` environment variable to a secret string of your choice
+Set the `WEBHOOK_TOKEN` environment variable to a secret string of your choice
 when running the bot. It will be used in the incoming webhook URL.
 
 The URL is constructed as follows: `http(s)://<host>:<port>/incoming/<your-secret-token>`
