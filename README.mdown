@@ -44,3 +44,17 @@ curl -X POST -H "Content-Type: application/json" \
 | Key | Description |
 | --- | ----------- |
 | `WEBHOOK_TOKEN` | A string for building your secret webhook URL
+
+## Usage with certain adapters
+
+### Mattermost (tested with hubot-matteruser)
+
+When using the Matermost adapter, find the unique id of the channel (not the display name) and use it for the "room:" value in hubot-incoming-webhook.
+
+Example, when using the Mattermost v3 API, your request would look like this:
+
+```sh
+curl -X POST -H "Content-Type: application/json" \
+    -d '{"room": "m6kj47mw7i8czq7mhd9za4afce", "message": "ohai"}' \
+     http://127.0.0.1:8080/incoming/your-secret-token
+```
