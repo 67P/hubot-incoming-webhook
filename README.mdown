@@ -47,7 +47,7 @@ curl -X POST -H "Content-Type: application/json" \
 
 ## Usage with certain adapters
 
-# Mattermost (tested with hubot-matteruser)
+### Mattermost (tested with hubot-matteruser)
 
 When using the Matermost adapter, find the unique id of the channel (not the display name) and use it for the "room:" value in hubot-incoming-webhook.
 
