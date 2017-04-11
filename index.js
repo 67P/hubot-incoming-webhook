@@ -20,11 +20,11 @@
       if (typeof room !== 'string' || typeof message === 'undefined') {
         res.send(422); return;
       }
-
-      if (typeof message === 'string') {
-        robot.messageRoom(room, message);
-      } else if (message instanceof Array) {
+      
+      if (message instanceof Array) {
         message.forEach(line => robot.messageRoom(room, line));
+      } else {
+        robot.messageRoom(room, message)
       }
 
       res.send(200);
