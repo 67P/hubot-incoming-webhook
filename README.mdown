@@ -18,11 +18,13 @@ Add to `external_scripts.json`:
 ```
 
 Set the `WEBHOOK_TOKEN` environment variable to a secret string of your choice
-when running the bot. It will be used in the incoming webhook URL.
+when running the bot. It will be used in the incoming webhook URLs.
+
+### Generic hooks
 
 The URL is constructed as follows: `http(s)://<host>:<port>/incoming/<your-secret-token>`
 
-## Usage
+#### Usage
 
 Just POST a simple JSON body to the webhook URL.
 
@@ -37,6 +39,30 @@ Example:
 curl -X POST -H "Content-Type: application/json" \
      -d '{"room": "#kosmos", "message": "ohai"}' \
      http://127.0.0.1:8080/incoming/your-secret-token
+```
+
+### UptimeRobot
+
+The URL is constructed as follows: `http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>`
+
+#### Usage
+
+Send a GET request to the webhook URL with the follow query params.
+In UptimeRobot's settings, add the following webhook (the trailing ampersand
+is required):
+
+```
+http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>?room=ops@example.com&
+```
+
+| Key | Value |
+| --- | ----- |
+| room | (string) The room/channel you want to post to. |
+
+Example:
+
+```sh
+curl http://127.0.0.1:8080/incoming/your-secret-token?room=ops@example.com&monitorFriendlyName=Test&monitorID=1234567&alertTypeFriendlyName=Down
 ```
 
 ### IRC
