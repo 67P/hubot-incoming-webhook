@@ -8,9 +8,10 @@
 (function () {
   "use strict";
 
+  var html_decode = require("ent/decode");
+
   module.exports = function(robot) {
     robot.router.get('/incoming/uptimerobot/'+ process.env.WEBHOOK_TOKEN, (request, response) => {
-      var html_decode = require("ent/decode");
       const room = request.query.room;
       const monitorName = html_decode(request.query.monitorFriendlyName);
       const checkURL = 'https://uptimerobot.com/dashboard.php#' + request.query.monitorID;
