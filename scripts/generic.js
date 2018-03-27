@@ -1,12 +1,4 @@
-// Description:
-//   Accept incoming Webhooks to write messages to a room/channel
-//
-// Configuration:
-//   WEBHOOK_TOKEN: A string for building your secret webhook URL
-//
-// Authors:
-//   Sebastian Kippe <sebastian@kip.pe>
-
+// Accept incoming Webhooks to write messages to a room/channel
 (function () {
   "use strict";
 
