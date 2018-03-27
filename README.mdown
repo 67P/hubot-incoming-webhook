@@ -20,11 +20,11 @@ Add to `external_scripts.json`:
 Set the `WEBHOOK_TOKEN` environment variable to a secret string of your choice
 when running the bot. It will be used in the incoming webhook URLs.
 
+## Usage
+
 ### Generic hooks
 
 The URL is constructed as follows: `http(s)://<host>:<port>/incoming/<your-secret-token>`
-
-#### Usage
 
 Just POST a simple JSON body to the webhook URL.
 
@@ -45,25 +45,20 @@ curl -X POST -H "Content-Type: application/json" \
 
 The URL is constructed as follows: `http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>`
 
-#### Usage
-
-Send a GET request to the webhook URL with the follow query params.
-In UptimeRobot's settings, add the following webhook (the trailing ampersand
-is required):
+In [UptimeRobot's settings](https://uptimerobot.com/dashboard#mySettings),
+add the following webhook as an alert contact (you must set the room that you
+want to bot to send messages to):
 
 ```
 http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>?room=ops@example.com&
 ```
 
-| Key | Value |
-| --- | ----- |
-| room | (string) The room/channel you want to post to. |
+Don't forget the trailing ampersand, this is required so UptimeRobot can add
+their query strings to the request for the monitor ID, status, and so on.
 
-Example:
-
-```sh
-curl http://127.0.0.1:8080/incoming/your-secret-token?room=ops@example.com&monitorFriendlyName=Test&monitorID=1234567&alertTypeFriendlyName=Down
-```
+Enable the webhook Alert Contact for each monitor. You can perform a
+[bulk action](https://uptimerobot.com/dashboard#bulkActions) to do it for all
+at once.
 
 ### IRC
 
@@ -77,4 +72,4 @@ Find the unique ID of the channel (not the display name) and use it for the `roo
 
 | Key | Description |
 | --- | ----------- |
-| `WEBHOOK_TOKEN` | A string for building your secret webhook URL
+| `WEBHOOK_TOKEN` | A string for building your secret webhook URLs
