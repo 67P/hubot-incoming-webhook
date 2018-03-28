@@ -10,9 +10,6 @@
       let data    = req.body.payload != null ? JSON.parse(req.body.payload) : req.body;
       let room    = data.room;
       let message = data.message;
-      console.log(data);
-      console.log(room);
-      console.log(message);
 
       if (typeof room !== 'string' || typeof message === 'undefined') {
         res.send(422); return;
