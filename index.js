@@ -13,10 +13,10 @@
 
   module.exports = function(robot) {
     var path = require("path");
-    const scriptsPath = path.resolve(__dirname, "scripts");
+    const hooksPath = path.resolve(__dirname, "hooks");
 
-    require("fs").readdirSync(scriptsPath).forEach(function(file) {
-      robot.loadFile(scriptsPath, file)
+    require("fs").readdirSync(hooksPath).forEach(function(file) {
+      robot.loadFile(hooksPath, file)
     });
   }
 }());

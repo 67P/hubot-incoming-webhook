@@ -7,7 +7,7 @@ const http = require('http');
 process.env.EXPRESS_PORT = 18080
 process.env.WEBHOOK_TOKEN = "webhooktoken"
 
-const helper = new Helper('../scripts/uptimerobot.js')
+const helper = new Helper('../hooks/uptimerobot.js')
 
 describe('UptimeRobot webhook', function() {
   beforeEach(function(done) {

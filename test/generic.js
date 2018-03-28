@@ -7,7 +7,7 @@ const http = require('http');
 process.env.EXPRESS_PORT = 18080
 process.env.WEBHOOK_TOKEN = "webhooktoken"
 
-const helper = new Helper('../scripts/generic.js')
+const helper = new Helper('../hooks/generic.js')
 
 describe('Generic webhook', function() {
   beforeEach(function(done) {
