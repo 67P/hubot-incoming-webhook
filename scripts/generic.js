@@ -1,4 +1,6 @@
-// Accept incoming Webhooks to write messages to a room/channel
+// Description:
+//     Accept incoming Webhooks to write messages to a room/channel
+
 (function () {
   "use strict";
 

@@ -1,9 +1,10 @@
-// Send a message from a UptimeRobot webhook
-// You need to add the room attribute to your hook (for example
-// ops@muc.example.com)
+// Description:
+//   Send a message from a UptimeRobot webhook
+//   You need to add the room attribute to your hook (for example
+//   ops@muc.example.com)
 //
-//  Example UptimeRobot webhook (the ampersand is required):
-//  https://example.com/incoming/uptimerobot/secret?room=ops@example.com&
+//   Example UptimeRobot webhook (the ampersand is required):
+//   https://example.com/incoming/uptimerobot/secret?room=ops@example.com&
 
 (function () {
   "use strict";
