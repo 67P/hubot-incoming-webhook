@@ -47,7 +47,7 @@ The URL is constructed as follows: `http(s)://<host>:<port>/incoming/uptimerobot
 
 In [UptimeRobot's settings](https://uptimerobot.com/dashboard#mySettings),
 add the following webhook as an alert contact (you must set the room that you
-want to bot to send messages to):
+want the bot to send messages to):
 
 ```
 http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>?room=ops@example.com&
@@ -73,3 +73,11 @@ Find the unique ID of the channel (not the display name) and use it for the `roo
 | Key | Description |
 | --- | ----------- |
 | `WEBHOOK_TOKEN` | A string for building your secret webhook URLs
+
+## Running tests
+
+The tests are inside of the `test` folder. To run them:
+
+```sh
+npm test
+```
