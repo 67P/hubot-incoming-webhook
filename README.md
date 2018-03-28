@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/v/hubot-incoming-webhook.svg)](https://www.npmjs.com/package/hubot-incoming-webhook)
+[![Build Status](http://img.shields.io/travis/67P/hubot-incoming-webhook.svg?style=flat)](http://travis-ci.org/67P/hubot-incoming-webhook)
+
 # Hubot Incoming Webhook
 
 A (very simple) hubot script for sending messages to a channel/room via HTTP
