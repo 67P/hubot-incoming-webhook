@@ -4,9 +4,7 @@
   "description": "Accept incoming Webhooks to write messages to a room/channel",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/*.js",
-    "preinstall": "./get-deps.sh",
-    "prepublish": "./publish-dep.sh"
+    "test": "./node_modules/.bin/mocha test/*.js"
   },
   "keywords": [
     "hubot",
