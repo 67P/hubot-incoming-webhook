@@ -16,8 +16,7 @@
   "license": "MIT",
   "repository": "https://github.com/67P/hubot-incoming-webhook",
   "dependencies": {
-    "ent": "^2.2.0",
-    "npm": "^5.8.0"
+    "ent": "^2.2.0"
   },
   "engines": {
     "node": ">=4.0.0",
