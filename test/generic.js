@@ -1,10 +1,10 @@
 'use strict';
 
+require('./helpers/setup');
+
 const Helper = require('hubot-test-helper');
 const { expect } = require('chai');
 const request = require('supertest');
-
-process.env.WEBHOOK_TOKEN = 'webhooktoken';
 
 const helper = new Helper('../hooks/generic.js');
 
