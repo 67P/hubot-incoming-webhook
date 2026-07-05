@@ -1,22 +1,15 @@
-// Description:
-//   Accept incoming Webhooks to write messages to a room/channel
-//
-// Configuration:
-//   WEBHOOK_TOKEN: A string for building your secret webhook URL
-//
-// Authors:
-//   Sebastian Kippe <sebastian@kip.pe>
-//   Greg Karékinian <greg@5apps.com>
+'use strict';
 
-(function () {
-  "use strict";
+const path = require('path');
+const fs = require('fs');
 
-  module.exports = function(robot) {
-    var path = require("path");
-    const hooksPath = path.resolve(__dirname, "hooks");
+module.exports = function (robot) {
+  const hooksPath = path.resolve(__dirname, 'hooks');
 
-    require("fs").readdirSync(hooksPath).forEach(function(file) {
-      robot.loadFile(hooksPath, file)
+  fs.readdirSync(hooksPath)
+    .filter((file) => file.endsWith('.js'))
+    .sort()
+    .forEach((file) => {
+      robot.loadFile(hooksPath, file);
     });
-  }
-}());
+};

@@ -1,27 +1,61 @@
+'use strict';
+
 // Description:
-//     Accept incoming Webhooks to write messages to a room/channel
+//   Accept incoming webhooks to write messages to a room/channel.
+//
+// Configuration:
+//   WEBHOOK_TOKEN - A string for building your secret webhook URL.
+//
+// Authors:
+//   Kosmos Contributors <mail@kosmos.org>
 
-(function () {
-  "use strict";
+const he = require('he');
 
-  module.exports = function(robot) {
+function getToken() {
+  const token = process.env.WEBHOOK_TOKEN;
+  if (!token || typeof token !== 'string') {
+    throw new Error(
+      'hubot-incoming-webhook: the WEBHOOK_TOKEN environment variable must be set to a non-empty string.'
+    );
+  }
+  return token;
+}
 
-    robot.router.post('/incoming/'+process.env.WEBHOOK_TOKEN, (req, res) => {
-      let data    = req.body.payload != null ? JSON.parse(req.body.payload) : req.body;
-      let room    = data.room;
-      let message = data.message;
+module.exports = function (robot) {
+  const token = getToken();
 
-      if (typeof room !== 'string' || typeof message === 'undefined') {
-        res.send(422); return;
-      }
+  robot.router.post(`/incoming/${token}`, (req, res) => {
+    let data;
+    try {
+      data = (req.body.payload != null)
+        ? JSON.parse(req.body.payload)
+        : req.body;
+    } catch {
+      res.status(400).json({ error: 'Invalid JSON payload.' });
+      return;
+    }
 
-      if (typeof message === 'string') {
-        robot.messageRoom(room, message);
-      } else if (message instanceof Array) {
-        message.forEach(line => robot.messageRoom(room, line));
-      }
+    const room = data.room;
+    const message = data.message;
 
-      res.send(200);
-    });
-  };
-}());
+    if (typeof room !== 'string' || room.length === 0 || typeof message === 'undefined') {
+      res.status(422).json({ error: 'Missing or invalid "room" or "message".' });
+      return;
+    }
+
+    if (typeof message === 'string') {
+      robot.messageRoom(room, message);
+    } else if (Array.isArray(message)) {
+      message.forEach((line) => robot.messageRoom(room, line));
+    } else {
+      res.status(422).json({ error: '"message" must be a string or an array of strings.' });
+      return;
+    }
+
+    res.status(200).json({ ok: true });
+  });
+};
+
+// Exported for tests / reuse
+module.exports.getToken = getToken;
+module.exports.decodeHtml = he.decode;
