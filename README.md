@@ -1,5 +1,5 @@
 [![npm](https://img.shields.io/npm/v/hubot-incoming-webhook.svg)](https://www.npmjs.com/package/hubot-incoming-webhook)
-[![Build Status](http://img.shields.io/travis/67P/hubot-incoming-webhook.svg?style=flat)](http://travis-ci.org/67P/hubot-incoming-webhook)
+[![CI](https://github.com/67P/hubot-incoming-webhook/actions/workflows/ci.yml/badge.svg)](https://github.com/67P/hubot-incoming-webhook/actions/workflows/ci.yml)
 
 # Hubot Incoming Webhook
 
