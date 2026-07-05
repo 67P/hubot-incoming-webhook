@@ -21,16 +21,18 @@ Add to `external_scripts.json`:
 ```
 
 Set the `WEBHOOK_TOKEN` environment variable to a secret string of your choice
-when running the bot. It will be used in the incoming webhook URLs.
+when running the bot. It is required at startup and will be used in the
+incoming webhook URLs.
 
 ## Usage
 
 ### Generic hooks
 
-The generic Webhook allows you to send arbitrary messages to a room of your
+The generic webhook allows you to send arbitrary messages to a room of your
 choice, by POSTing a simple JSON body to the webhook URL.
 
-The URL is constructed as follows: `http(s)://<host>:<port>/incoming/<your-secret-token>`
+The URL is constructed as follows:
+`http(s)://<host>:<port>/incoming/<your-secret-token>`
 
 | Key | Value |
 | --- | ----- |
@@ -45,12 +47,17 @@ curl -X POST -H "Content-Type: application/json" \
      http://127.0.0.1:8080/incoming/your-secret-token
 ```
 
+A successful request responds with `200 {"ok":true}`. Missing or invalid
+`room`/`message` respond with `422`; a malformed JSON payload responds with
+`400`.
+
 ### UptimeRobot
 
 This hook allows you to receive hooks from UptimeRobot, and announce your
 account's uptime status changes/events in a room of your choice.
 
-The URL is constructed as follows: `http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>`
+The URL is constructed as follows:
+`http(s)://<host>:<port>/incoming/uptimerobot/<your-secret-token>`
 
 In [UptimeRobot's settings](https://uptimerobot.com/dashboard#mySettings),
 add the following webhook as an alert contact (you must set the room that you
@@ -71,7 +78,7 @@ at once.
 
 | Key | Description |
 | --- | ----------- |
-| `WEBHOOK_TOKEN` | A string for building your secret webhook URLs
+| `WEBHOOK_TOKEN` | A string for building your secret webhook URLs (required). |
 
 ## Adapter-specific config/hints
 
@@ -90,3 +97,8 @@ Find the unique ID of the channel (not the display name) and use it for the `roo
 The tests are inside of the `test` folder. To run them:
 
     npm test
+
+Lint the code with:
+
+    npm run lint
+

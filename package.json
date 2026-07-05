@@ -12,7 +12,7 @@
     "hubot-script"
   ],
   "authors": [
-    "Sebastian Kippe <sebastian@kip.pe>"
+    "Kosmos Contributors <mail@kosmos.org>"
   ],
   "license": "MIT",
   "repository": "https://github.com/67P/hubot-incoming-webhook",
