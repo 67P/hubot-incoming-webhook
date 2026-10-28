@@ -1,1 +1,14 @@
 /node_modules
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

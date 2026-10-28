@@ -1,22 +1,19 @@
 // Description:
-//   Accept incoming Webhooks to write messages to a room/channel
+//   Loads every hook in ./hooks as a hubot script.
 //
-// Configuration:
-//   WEBHOOK_TOKEN: A string for building your secret webhook URL
-//
-// Authors:
-//   Sebastian Kippe <sebastian@kip.pe>
-//   Greg Karékinian <greg@5apps.com>
+// Commands:
+//   None
 
-(function () {
-  "use strict";
+import path from 'node:path';
+import fs from 'node:fs';
 
-  module.exports = function(robot) {
-    var path = require("path");
-    const hooksPath = path.resolve(__dirname, "hooks");
+export default function (robot) {
+  const hooksPath = path.resolve(import.meta.dirname, 'hooks');
 
-    require("fs").readdirSync(hooksPath).forEach(function(file) {
-      robot.loadFile(hooksPath, file)
+  fs.readdirSync(hooksPath)
+    .filter((file) => file.endsWith('.js'))
+    .sort()
+    .forEach((file) => {
+      robot.loadFile(hooksPath, file);
     });
-  }
-}());
+}
