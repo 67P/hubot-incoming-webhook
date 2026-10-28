@@ -6,6 +6,8 @@
 A (very simple) hubot script for sending messages to a channel/room via HTTP
 POST requests to your bot.
 
+Requires **Node.js >= 22** and **hubot >= 14**.
+
 ## Installation
 
 Install script package in your bot's repository:

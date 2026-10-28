@@ -1,5 +1,3 @@
-'use strict';
-
 // Description:
 //   Accept incoming webhooks to write messages to a room/channel.
 //
@@ -9,9 +7,9 @@
 // Authors:
 //   Kosmos Contributors <mail@kosmos.org>
 
-const he = require('he');
+import { decode } from 'he';
 
-function getToken() {
+export function getToken() {
   const token = process.env.WEBHOOK_TOKEN;
   if (!token || typeof token !== 'string') {
     throw new Error(
@@ -21,7 +19,9 @@ function getToken() {
   return token;
 }
 
-module.exports = function (robot) {
+export const decodeHtml = decode;
+
+export default function (robot) {
   const token = getToken();
 
   robot.router.post(`/incoming/${token}`, (req, res) => {
@@ -54,8 +54,4 @@ module.exports = function (robot) {
 
     res.status(200).json({ ok: true });
   });
-};
-
-// Exported for tests / reuse
-module.exports.getToken = getToken;
-module.exports.decodeHtml = he.decode;
+}

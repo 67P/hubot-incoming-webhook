@@ -1,7 +1,7 @@
-const js = require('@eslint/js');
-const stylistic = require('@stylistic/eslint-plugin');
+import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 
-module.exports = [
+export default [
   js.configs.recommended,
   {
     plugins: {
@@ -9,14 +9,10 @@ module.exports = [
     },
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: 'commonjs',
+      sourceType: 'module',
       globals: {
         console: 'readonly',
         process: 'readonly',
-        Buffer: 'readonly',
-        __dirname: 'readonly',
-        module: 'readonly',
-        require: 'readonly',
         setTimeout: 'readonly',
         clearTimeout: 'readonly',
         URLSearchParams: 'readonly',
@@ -45,20 +41,6 @@ module.exports = [
       'prefer-const': 'error',
       'no-var': 'error',
       'eqeqeq': ['error', 'smart'],
-    },
-  },
-  {
-    // Test files: mocha globals
-    files: ['test/**/*.js'],
-    languageOptions: {
-      globals: {
-        describe: 'readonly',
-        it: 'readonly',
-        before: 'readonly',
-        after: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-      },
     },
   },
   {

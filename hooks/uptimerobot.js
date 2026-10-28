@@ -1,5 +1,3 @@
-'use strict';
-
 // Description:
 //   Forward UptimeRobot alert webhooks to a chat room.
 //   Add the room attribute to your hook, e.g.
@@ -12,9 +10,9 @@
 // Authors:
 //   Kosmos Contributors <mail@kosmos.org>
 
-const he = require('he');
+import { decode } from 'he';
 
-function getToken() {
+export function getToken() {
   const token = process.env.WEBHOOK_TOKEN;
   if (!token || typeof token !== 'string') {
     throw new Error(
@@ -24,12 +22,14 @@ function getToken() {
   return token;
 }
 
-module.exports = function (robot) {
+export const decodeHtml = decode;
+
+export default function (robot) {
   const token = getToken();
 
   robot.router.get(`/incoming/uptimerobot/${token}`, (req, res) => {
     const room = req.query.room;
-    const monitorName = he.decode(req.query.monitorFriendlyName || '');
+    const monitorName = decode(req.query.monitorFriendlyName || '');
     const monitorID = req.query.monitorID;
     const alertType = (req.query.alertTypeFriendlyName || '').toLowerCase();
 
@@ -49,7 +49,4 @@ module.exports = function (robot) {
 
     res.status(200).json({ ok: true });
   });
-};
-
-module.exports.getToken = getToken;
-module.exports.decodeHtml = he.decode;
+}
