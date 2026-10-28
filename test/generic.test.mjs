@@ -55,6 +55,26 @@ describe('Generic webhook', () => {
     assert.deepEqual(ctx.messages, []);
   });
 
+  it('responds with 422 when room is not a string', async () => {
+    const res = await request(ctx.robot.router)
+      .post(`/incoming/${TOKEN}`)
+      .set('Content-Type', 'application/json')
+      .send({ room: 42, message: 'hello' });
+
+    assert.equal(res.status, 422);
+    assert.deepEqual(ctx.messages, []);
+  });
+
+  it('responds with 422 when room is empty', async () => {
+    const res = await request(ctx.robot.router)
+      .post(`/incoming/${TOKEN}`)
+      .set('Content-Type', 'application/json')
+      .send({ room: '', message: 'hello' });
+
+    assert.equal(res.status, 422);
+    assert.deepEqual(ctx.messages, []);
+  });
+
   it('responds with 422 when message is missing', async () => {
     const res = await request(ctx.robot.router)
       .post(`/incoming/${TOKEN}`)

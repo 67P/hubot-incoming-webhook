@@ -40,6 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Test coverage for: array messages, form-encoded `payload` bodies, invalid
   JSON, missing `room`/`message`, unsupported message types, unknown tokens,
   the hook loader, and UptimeRobot missing-parameter cases.
+- A `test:coverage` script that enforces 100% line/branch/function coverage for
+  `index.js` and `hooks/`.
 - `engines` field in `package.json` (`node >= 22`).
 - `CHANGELOG.md`.
 

@@ -54,6 +54,52 @@ describe('UptimeRobot webhook', () => {
     assert.deepEqual(ctx.messages, []);
   });
 
+  it('responds with 422 when room is not a string', async () => {
+    const qs = new URLSearchParams();
+    qs.append('room', 'a');
+    qs.append('room', 'b');
+    qs.append('monitorID', '1234567');
+    qs.append('alertTypeFriendlyName', 'Down');
+
+    const res = await request(ctx.robot.router)
+      .get(`/incoming/uptimerobot/${TOKEN}?${qs.toString()}`);
+
+    assert.equal(res.status, 422);
+    assert.deepEqual(ctx.messages, []);
+  });
+
+  it('responds with status 200 without a monitor name', async () => {
+    const qs = new URLSearchParams({
+      room: '#ops',
+      monitorID: '1234567',
+      alertTypeFriendlyName: 'Down',
+    }).toString();
+
+    const res = await request(ctx.robot.router)
+      .get(`/incoming/uptimerobot/${TOKEN}?${qs}`);
+
+    assert.equal(res.status, 200);
+    assert.deepEqual(ctx.messages, [
+      {
+        room: '#ops',
+        strings: ['[UptimeRobot]  is down - https://uptimerobot.com/dashboard.php#1234567'],
+      },
+    ]);
+  });
+
+  it('responds with 422 when alertTypeFriendlyName is missing', async () => {
+    const qs = new URLSearchParams({
+      room: '#ops',
+      monitorID: '1234567',
+    }).toString();
+
+    const res = await request(ctx.robot.router)
+      .get(`/incoming/uptimerobot/${TOKEN}?${qs}`);
+
+    assert.equal(res.status, 422);
+    assert.deepEqual(ctx.messages, []);
+  });
+
   it('responds with 422 when monitorID is missing', async () => {
     const qs = new URLSearchParams({
       room: '#ops',
