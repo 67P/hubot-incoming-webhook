@@ -4,6 +4,10 @@
   "description": "Accept incoming Webhooks to write messages to a room/channel",
   "type": "module",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "hooks"
+  ],
   "scripts": {
     "test": "node --test",
     "test:coverage": "node --test --experimental-test-coverage --test-coverage-include=index.js --test-coverage-include='hooks/**' --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100",
